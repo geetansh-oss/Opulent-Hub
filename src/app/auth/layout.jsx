@@ -15,7 +15,7 @@ export default function AuthLayout({ children }) {
               <h1 className="text-3xl">
                 Opulent Hub Community
               </h1>
-              <p className="text-sm w-96">
+              <p className="text-sm max-w-96">
                 Quodsi haberent magnalia inter potentiam et divitias, et non illam quidem haec eo spectant
               </p>
               <a href="/about" className="text-indigo-500">

@@ -23,7 +23,7 @@ export const handler = NextAuth({
   },
   callbacks: {
     async jwt({ token, account }) {
-      if (accout) {
+      if (account) {
         token.accessToken = account.access_token;
       }
       return token;
@@ -31,6 +31,17 @@ export const handler = NextAuth({
     async session({ session, token }) {
       session.accessToken = token.accessToken;
       return session;
+    },
+    async signIn(account, profile, query){
+      const role = query.role;
+
+      if(role == "owner"){
+
+      }
+      else if(role == "editor"){
+
+      }
+      return true;
     }
   }
 })
