@@ -1,9 +1,15 @@
 "use client";
 
-import { signOut } from "next-auth/react"
-export default function Owner(){
-  return(<div>
+import { signOut, useSession } from "next-auth/react"
+import { redirect } from "next/navigation";
+export default function Owner() {
+  const { data: session } = useSession();
+  if (!session) {
+    redirect('/auth/signin');
+  }
+
+  return (<div>
     Owner
-    <button onClick={signOut} className="btn">Sign Out</button>
-    </div>)
+    <button className="btn" onClick={signOut}>Sign Out</button>
+  </div>)
 }

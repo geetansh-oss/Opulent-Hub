@@ -7,8 +7,7 @@ import { signIn, useSession } from "next-auth/react"
 export default function Navbar() {
 
   const { data: session } = useSession();
-  console.log(session);
-
+  
   return (
     <nav className="flex flex-row justify-between bg-opacity-0 p-4">
       {/* Logo Section */}
@@ -26,8 +25,8 @@ export default function Navbar() {
         {/* if Session is not available */}
         {session?.user ? (
           <div>
-            <Link href="/profile">
-              <FaRegUserCircle />
+            <Link href="/dashboard/owner">
+              <FaRegUserCircle size={25} />
             </Link>
           </div>
         ) : (

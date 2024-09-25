@@ -17,21 +17,8 @@ export default function SignIn() {
     setRole(selectedRole);
   };
 
-  async function handleSignIn(role) {
-    if (role === "owner") {
-      await signIn("google", {
-        callbackUrl: "/dashboard/owner",
-        role: "owner",
-        scope: "https://www.googleapis.com/auth/youtube.upload"
-      })
-    }
-    else if (role === "editor") {
-      await signIn("google", {
-        callbackUrl: "/dashboard/editor",
-        role: "editor",
-        scope:"openid profile email"
-      })
-    }
+  async function handleSignIn() {
+    signIn('google');
   }
 
   return (
@@ -65,13 +52,17 @@ export default function SignIn() {
         </button>
       </div>
       <div>
-        {role && (
+        {role == "owner" ? (
           <button
             className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
-            onClick={() => { handleSignIn(role) }}
+            onClick={handleSignIn}
           >
             Sign in with Google {role}
           </button>
+        ):(
+          <div>
+            
+          </div>
         )}
       </div>
     </div>

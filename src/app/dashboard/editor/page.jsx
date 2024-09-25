@@ -10,7 +10,7 @@ export default function Owner() {
   }
   console.log(session?.user?.role);
   return (<div>
-    editor
-    <button onClick={signOut} className="btn">Sign Out</button>
+    Editor
+    <button className="btn" onClick={signOut}>Sign Out</button>
   </div>)
 }
