@@ -2,6 +2,17 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+To start the project need a .env file with 
+
+// database url
+MONGODB_URL
+
+// Google OAuth Secret
+GOOGLE_CLIENT_ID // get from google credentials
+GOOGLE_CLIENT_SECRET // get from google credentials
+NEXTAUTH_SECRET // run "openssl rand -base64 32"
+NEXTAUTH_URL // 
+
 First, run the development server:
 
 ```bash
@@ -12,7 +23,10 @@ yarn dev
 pnpm dev
 # or
 bun dev
+
 ```
+
+
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
