@@ -23,11 +23,20 @@ export default function Navbar() {
           Contact Us
         </Link>
         {/* if Session is not available */}
-        {session?.user ? (
+        {session?.user?.role ? (
           <div>
-            <Link href="/dashboard/owner">
+          {
+            (session?.user?.role == "owner") ? (
+              <Link href="/dashboard/owner">
               <FaRegUserCircle size={25} />
             </Link>
+            ):(
+              <Link href="/dashboard/editor">
+              <FaRegUserCircle size={25} />
+            </Link>
+            )
+          }
+            
           </div>
         ) : (
           <div className="flex item-center">

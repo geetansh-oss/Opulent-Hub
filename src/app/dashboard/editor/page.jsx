@@ -6,7 +6,7 @@ export default function Owner() {
 
   const { data: session } = useSession();
   if(!session?.user){
-    redirect('/auth/signin'); 
+    redirect('/'); 
   }
   console.log(session?.user?.role);
   return (<div>
