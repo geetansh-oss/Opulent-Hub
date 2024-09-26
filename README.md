@@ -3,7 +3,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Getting Started
 
 To start the project need a .env file with 
-
+```bash
 // database url
 MONGODB_URL
 
@@ -11,7 +11,8 @@ MONGODB_URL
 GOOGLE_CLIENT_ID // get from google credentials
 GOOGLE_CLIENT_SECRET // get from google credentials
 NEXTAUTH_SECRET // run "openssl rand -base64 32"
-NEXTAUTH_URL // 
+NEXTAUTH_URL //
+```
 
 First, run the development server:
 
