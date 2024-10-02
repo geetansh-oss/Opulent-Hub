@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-let isConnect = "false";
+let isConnect = false;
 export async function connectToDB(){
   mongoose.set('strictQuery', true);
 
@@ -15,6 +15,7 @@ export async function connectToDB(){
     })
     isConnect = true;
   } catch (error) {
-    console.error(error);
+    console.error("database error",error);
+    throw error;
   }
 }

@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSession, signIn } from 'next-auth/react';
 import { redirect } from 'next/navigation';
+import SignUp from '@/app/auth/signup/page'; 
 export default function SignIn() {
 
   const [role, setRole] = useState("owner");
@@ -20,13 +21,13 @@ export default function SignIn() {
   function handleRoleSelection(selectedRole) {
     setRole(selectedRole);
   };
-
-  async function handleSignIn(role) {
-    if (role == "owner") {
-      signIn('google', { callbackUrl: 'dashboard/owner' });
-    } else if (role == "editor") {
-      signIn("credentials", { email: "test@gmail.com", password: "test" })
-    }
+// handle owner signIn amd signUp
+  async function handleSignInOwner() {
+    signIn('google', { callbackUrl: '/dashboard/owner' });
+  }
+// handle editor signIn and signUp
+  async function handleSignInEditor(){
+    signIn('credentials',{email, password, })
   }
 
   return (
@@ -63,7 +64,7 @@ export default function SignIn() {
         {role == "owner" ? (
           <button
             className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
-            onClick={(role) => (handleSignIn(role))}
+            onClick={handleSignInOwner}
           >
             Sign in with Google as {role}
           </button>
