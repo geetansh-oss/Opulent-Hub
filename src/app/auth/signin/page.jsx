@@ -3,10 +3,10 @@
 import { useState, useEffect } from 'react';
 import { useSession, signIn } from 'next-auth/react';
 import { redirect } from 'next/navigation';
-import SignUp from '@/app/auth/signup/page'; 
+import Link from 'next/link';
 export default function SignIn() {
 
-  const [role, setRole] = useState("owner");
+  const [role, setRole] = useState("");
   const { data: session } = useSession();
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
@@ -21,13 +21,21 @@ export default function SignIn() {
   function handleRoleSelection(selectedRole) {
     setRole(selectedRole);
   };
-// handle owner signIn amd signUp
-  async function handleSignInOwner() {
-    signIn('google', { callbackUrl: '/dashboard/owner' });
+  // handle owner signIn amd signUp
+  async function handleSignInOwner(e) {
+    e.preventDefault();
+    await signIn('google', {
+      callbackUrl: '/dashboard/owner'
+    });
   }
-// handle editor signIn and signUp
-  async function handleSignInEditor(){
-    signIn('credentials',{email, password, })
+  // handle editor signIn and signUp
+  async function handleSignInEditor(e) {
+    e.preventDefault();
+    await signIn('credentials', {
+      email,
+      password,
+      callbackUrl: '/dashboard/editor'
+    });
   }
 
   return (
@@ -74,7 +82,7 @@ export default function SignIn() {
               <label>Email</label>
               <input
                 type='email'
-                name='email'
+                value={email}
                 placeholder='example@gmail.com'
                 className='bg-indigo-100'
                 onChange={(e) => (setEmail(e.target.value))}
@@ -82,18 +90,20 @@ export default function SignIn() {
               <label>password</label>
               <input
                 type='password'
-                name='password'
+                value={password}
                 placeholder='*********'
                 className='bg-indigo-100'
                 onChange={(e) => (setpassword(e.target.value))}
               />
               <button
                 className='btn'
-                onSubmit={(role) => (handleSignIn(role))}
+                type='submit'
+                onClick={handleSignInEditor}
               >
                 submit
               </button>
             </form>
+            <Link href="/auth/signup">Do not have a account ?</Link>
           </div>
         )}
       </div>

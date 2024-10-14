@@ -14,3 +14,10 @@
 .btn{
   @apply bg-indigo-500 text-white rounded-sm hover:bg-white hover:text-indigo-500 hover:font-semibold px-3 py-1
 }
+
+.container{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

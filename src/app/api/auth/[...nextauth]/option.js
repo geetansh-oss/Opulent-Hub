@@ -63,24 +63,29 @@ export const Options = {
       console.log(`session: ${session}`);
       return session;
     },
-    async signIn({ profile }) {
+    async signIn({ profile, account }) {
       try {
         await connectToDB();
-        const existUser = await Owner.findOne({
-          email: profile?.email
-        })
-
-        if (!existUser) {
-          const newUser = await Owner.create({
-            email: profile?.email,
-            image: profile?.picture,
-            username: profile?.name.split(" ").join("").toLowerCase()
+        if (account.provider == "google") {
+          const existUser = await Owner.findOne({
+            email: profile?.email
           })
-          console.log("new User Created :-", newUser);
+
+          if (!existUser) {
+            const newUser = await Owner.create({
+              email: profile?.email,
+              image: profile?.picture,
+              username: profile?.name.split(" ").join("").toLowerCase()
+            })
+            console.log("new User Created :-", newUser);
+            return true;
+          }
+          console.log("Existing User:-", existUser);
           return true;
         }
-        console.log("Existing User:-", existUser);
-        return true;
+        if(account.provider == "credentials"){
+          return true;
+        }
       } catch (error) {
         console.error("sign in error", error);
         return false;
